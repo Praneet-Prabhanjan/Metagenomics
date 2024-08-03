@@ -12,27 +12,28 @@ This repository focuses on state-of-the-art techniques and tools for metagenomic
 **Visualization:** Present complex data in an understandable and visually appealing manner.
 
 **Key Features**
+
 **1. Kraken Software Suite**
 The Kraken software suite is a powerful tool for taxonomic classification of metagenomic sequences. It utilizes k-mer based approaches, which involve breaking down DNA sequences into fixed-length subsequences called k-mers. By comparing these k-mers to a comprehensive database, Kraken can rapidly and accurately classify sequences to provide insights into microbial communities.
 
 **Efficiency:** Kraken's k-mer strategy enables high-speed classification.
 **Accuracy:** Achieves robust results by leveraging a large database of known sequences.
 **Scalability:** Suitable for handling large datasets, making it ideal for comprehensive metagenomic studies.
+
+
 **2. Deep Learning Approaches**
 In addition to traditional methods, this repository explores deep learning frameworks for microbiome analysis. By employing techniques such as word2vec, one-hot encoding, and other neural network-based methods, these tools offer innovative solutions for:
 
 **Microbiome Classification:** Enhance accuracy in identifying microbial species and strains.
 **Functional Analysis:** Predict functional annotations using sophisticated models.
-**Data Integration:** Combine multi-omics data for comprehensive insights.
-Tools and Resources
 
 I am committed to providing a variety of scripts and tools to facilitate metagenomics research, including:
 
 **Bash Scripts:** Automate common tasks and workflows in metagenomics analysis.
 **Docker Images:** Ensure reproducibility and ease of use across different computing environments.
 **Python Scripts:** Implement advanced algorithms and analyses with flexibility and precision.
-**
-Computational Requirements**
+
+**Computational Requirements**
 Please note that the tools and scripts provided in this repository may require substantial computational resources. This limitation underscores the need for access to powerful hardware to perform complex analyses effectively.
 
 Getting Started
