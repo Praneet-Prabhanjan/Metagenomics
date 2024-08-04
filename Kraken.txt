@@ -1,4 +1,4 @@
-Kraken suite, an end-to-end pipeline for the classification, quantification, and visualization of metagenomic datasets. (https://www.nature.com/articles/s41596-022-00738-y)
+Kraken suite is an end-to-end pipeline for the classification, quantification, and visualization of metagenomic datasets. (https://www.nature.com/articles/s41596-022-00738-y)
 
 The protocol describes two scenarios:
 
@@ -20,4 +20,5 @@ Remember: The entire microbial biosphere is still far from being completely sequ
 
 Refer: https://github.com/jenniferlu717/KrakenTools
 Refer: https://bioconda.github.io/recipes/krakentools/README.html
+Refer: https://ccb.jhu.edu/software/kraken/MANUAL.html
 
