@@ -1,0 +1,61 @@
+#Download and Install Kraken through Conda channel : Bioconda @additionally binaries can also be downloaded (https://github.com/DerrickWood/kraken2/releases)
+$ conda install -c conda-forge -c bioconda kraken 2 krakentools bracken \r bowtie2 samtools
+
+#Pavian
+https://fbreitwieser.shinyapps.io/pavian/
+#Bracken
+https://github.com/JenniferLu717/Bracken
+#Bowtie2
+https://github.com/BenLangmead/bowtie2/releases/
+
+#Download the NCBI taxonomy
+$ kraken2-build --db krakendb --download-taxonomy
+
+#Download one or more reference libraries (https://github.com/DerrickWood/kraken2/wiki/Manual#custom-databases)
+kraken2-build --db krakendb --download-library bacteria 
+kraken2-build --db krakendb --download-library archaea
+kraken2-build --download-taxonomy --db $DBNAME
+
+#Download additional genomes by adding multi-FASTA or single-FASTA files. The FASTA
+sequence headers must include either (1) NCBI accession numbers or (2) the text kraken: taxed
+followed by the taxonomy ID for the genome (e.g., >sequence100|kraken:taxid|9606|).#
+
+$ kraken2-build --db krakendb --add-to-library chr1.fa
+$ kraken2-build --db krakendb --add-to-library chr2.fa
+
+#Build the Kraken 2 database and generate the Bracken database files
+$ kraken2-build --db krakendb --build --threads 8
+$ bracken-build -d krakendb -t 8 -k 35 -l 100
+
+#Create four folders (Use mkdir) for required data:
+k2protocol_db, m_samples, p_samples, b_index
+
+Download data using the SRA toolkit refer to this article Install MIniconda before(https://medium.com/@prabhanjan847/uncovering-sra-tools-prefetch-and-fasterq-dump-mini-conda-environment-e118cb02a6cf)
+
+Among the steps: Procedure for Microbial classification, analysis, diversity abundance, etc.
+
+Remove the host DNA 
+1. $ bowtie2 -x b_index/GRCh38 -p 8 -1 paired_reads_1.fastq -2 paired_reads_2.fastq \--un-conc nonhuman_reads.fastq -S human_reads.sam
+
+Classify microbiome samples using Kraken (Kraken 2 examines the k-mers within a query sequence and uses this information to query a database.)
+2. $ kraken2 --db $DBNAME seqs.fq 
+#Additionally number of threads can be mentioned to make sure that the program can run faster. 
+$ kraken2 --db k2protocol_db --threads 8 --report kreports/SRR14143424.k2report \--report-minimizer-data --minimum-hit-groups 3 samples/SRR14143424_1.fastq \samples/SRR14143424_2.fastq > kraken_outputs/SRR14143424.kraken2
+
+Run bracken for abundance estimation of microbiome samples
+3. $ bracken -d kraken_database-i sample.k2report -r read_length \-l taxonomic_level -t read_threshold -o sample.bracken -w sample.breport\
+
+Calculate α-diversity
+4. $ python KrakenTools/DiversityTools/alpha_diversity.py \-f bracken_outputs/SRR14143424.bracken -a BP
+#can calculate Berger Parker’s(BP), Fisher’s(F), Simpson’s(Si), inverse Simpson’s (ISi)35, and Shannon’s(Sh) α-diversity for each sample after running Kraken 2 and Bracken.
+
+Calculate β-diversity (Bray–Curtis)
+5. $ python KrakenTools/DiversityTools/beta_diversity.py -i \
+bracken_outputs/SRR14092160.bracken bracken_outputs/SRR14092310.bracken \bracken_outputs/SRR14143424.bracken --type bracken
+
+Generate Krona plots (metagenomic visualization for viewing data in a phylogenetic hierarchy.)
+6. $ python KrakenTools/kreport2krona.py -r breports/SRR14143424.breport \-o b_krona_txt/SRR14143424.b.krona.txt --no-intermediate-ranks
+$ KronaScripts/ktImportText b_krona_txt/SRR14143424.b.krona.txt \-o krona_html/SRR14143424.krona.html
+
+Generate Pavian plots using the Shiny app (Use breport from the bracken run
+7. Create Sankey plots
