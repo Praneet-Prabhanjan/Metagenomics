@@ -1,0 +1,23 @@
+Kraken suite, an end-to-end pipeline for the classification, quantification, and visualization of metagenomic datasets. (https://www.nature.com/articles/s41596-022-00738-y)
+
+The protocol describes two scenarios:
+
+(1) quantification of the species in a given metagenomics sample;
+(2) detection of a pathogenic agent from a clinical sample.
+
+Tools Included: Kraken2, KrakenUniq, Kraken, Kraken2Uniq (based on KrakenUniq and included in the Kraken 2 codebase), Bracken (to compute species abundance), KrakenTools and Pavian (downstream statistical analysis and visualization of the
+classification and abundance estimation results). 
+
+Kraken, Kraken2, Kraken2uniq, Krakenuniq - Methods differ in the ways they count, access, and store the k-mer information,
+
+
+Alpha_diversity can be used to quantify the diversity in a sample, and beta_diversity can be used to compare diversity across samples.
+
+Bracken - Provides estimated reads per species in the sample.
+Kraken 2 can also classify reads against protein databases using six-frame translation.
+
+Remember: The entire microbial biosphere is still far from being completely sequenced, and thus missing or partial genomes may introduce biases and reduce classification performance.
+
+Refer: https://github.com/jenniferlu717/KrakenTools
+Refer: https://bioconda.github.io/recipes/krakentools/README.html
+
