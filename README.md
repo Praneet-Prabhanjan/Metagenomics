@@ -14,7 +14,7 @@ This repository focuses on state-of-the-art techniques and tools for metagenomic
 **Key Features**
 
 **1. Kraken Software Suite**
-The Kraken software suite is a powerful tool for taxonomic classification of metagenomic sequences. It utilizes k-mer based approaches, which involve breaking down DNA sequences into fixed-length subsequences called k-mers. By comparing these k-mers to a comprehensive database, Kraken can rapidly and accurately classify sequences to provide insights into microbial communities.
+The Kraken software suite is a powerful tool for taxonomic classification of metagenomic sequences. It utilizes k-mer-based approaches, which involve breaking down DNA sequences into fixed-length subsequences called k-mers. By comparing these k-mers to a comprehensive database, Kraken can rapidly and accurately classify sequences to provide insights into microbial communities.
 
 **Efficiency:** Kraken's k-mer strategy enables high-speed classification.
 **Accuracy:** Achieves robust results by leveraging a large database of known sequences.
@@ -45,3 +45,5 @@ To get started with the tools and pipelines provided in this repository:
 
 **Conclusion**
 This repository is a comprehensive resource for anyone interested in metagenomics and microbiome analysis. By integrating cutting-edge tools and techniques, I aim to advance understanding in this exciting field and facilitate meaningful scientific discoveries.
+
+Refer: Lu, J., Rincon, N., Wood, D.E. et al. Metagenome analysis using the Kraken software suite. Nat Protoc 17, 2815–2839 (2022). https://doi.org/10.1038/s41596-022-00738-y
